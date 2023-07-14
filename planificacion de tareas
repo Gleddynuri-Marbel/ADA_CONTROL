@@ -1,0 +1,41 @@
+#include <iostream>
+#include <queue>
+#include <string>
+
+using namespace std;
+
+// Estructura para representar una tarea
+struct tareas {
+    string name;
+    int priority;
+
+    tareas(const string& n, int p) : name(n), priority(p) {}
+};
+
+// Función de comparación para ordenar las tareas por prioridad
+struct Comparetareass {
+    bool operator()(const tareas& t1, const tareas& t2) {
+        // Ordenar de mayor a menor prioridad
+        return t1.priority < t2.priority;
+    }
+};
+
+int main() {
+    // Cola de prioridad para almacenar las tareas
+    priority_queue<tareas, vector<tareas>, Comparetareass> tareasQueue;
+
+    // Agregar algunas tareas de ejemplo
+    tareasQueue.push(tareas("Tarea 1", 50));
+    tareasQueue.push(tareas("Tarea 2", 10));
+    tareasQueue.push(tareas("Tarea 3", 15));
+    tareasQueue.push(tareas("Tarea 4", 30));
+
+    // Procesar las tareas en orden de prioridad
+    while (!tareasQueue.empty()) {
+        tareas currenttareas = tareasQueue.top();
+        tareasQueue.pop();
+        cout << "Tarea: " << currenttareas.name << ", Prioridad: " << currenttareas.priority << endl;
+    }
+
+    return 0;
+}
